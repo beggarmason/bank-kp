@@ -1,39 +1,17 @@
-package edu.tusur.kp.jpa.model;
+package edu.tusur.kp.jpa.dto;
 
-import org.springframework.data.annotation.CreatedDate;
-
-import javax.persistence.*;
+import edu.tusur.kp.jpa.model.Person;
+import edu.tusur.kp.jpa.model.Restriction;
 import java.util.Date;
 import java.util.List;
 
-@Entity
-public class Account {
+public class AccountDto {
 
-    @Id
-    @GeneratedValue
     private Long id;
-
     private Boolean active;
-
-    @CreatedDate
     private Date created;
-
-    @OneToMany(cascade = CascadeType.ALL)
     private List<Restriction> restriction;
-
-    @OneToOne(cascade = CascadeType.ALL)
     private Person person;
-
-    @Override
-    public String toString() {
-        return "Account{" +
-                "id=" + id +
-                ", active=" + active +
-                ", created=" + created +
-                ", restriction=" + restriction +
-                ", person=" + person +
-                '}';
-    }
 
     public Long getId() {
         return id;
@@ -73,5 +51,16 @@ public class Account {
 
     public void setPerson(Person person) {
         this.person = person;
+    }
+
+    @Override
+    public String toString() {
+        return "AccountDto{" +
+                "id=" + id +
+                ", active=" + active +
+                ", created=" + created +
+                ", restriction=" + restriction +
+                ", person=" + person +
+                '}';
     }
 }
