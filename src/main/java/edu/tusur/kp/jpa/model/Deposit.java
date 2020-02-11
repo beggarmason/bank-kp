@@ -27,18 +27,22 @@ public class Deposit {
     private Date toDate;
 
     @ManyToOne
+    @JoinColumn(name = "person")
     private Person person;
 
     @OneToOne
+    @JoinColumn(name = "plan")
     private Plan plan;
 
     @OneToOne
+    @JoinColumn(name = "type")
     private Type type;
 
     @OneToMany
     private List<Restriction> restriction;
 
     @OneToOne
+    @JoinColumn(name = "bonus")
     private Bonus bonus;
 
     public Long getId() {

@@ -21,7 +21,8 @@ public class Account {
     @OneToMany(cascade = CascadeType.ALL)
     private List<Restriction> restriction;
 
-    @OneToOne(cascade = CascadeType.ALL)
+    @ManyToOne
+    @JoinColumn(name = "person")
     private Person person;
 
     @Override

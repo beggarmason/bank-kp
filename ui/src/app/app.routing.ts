@@ -10,7 +10,7 @@ import { P500Component } from './views/error/500.component';
 export const routes: Routes = [
   {
     path: '',
-    redirectTo: 'dashboard',
+    redirectTo: 'account',
     pathMatch: 'full',
   },
   {
@@ -35,8 +35,8 @@ export const routes: Routes = [
     },
     children: [
       {
-        path: 'dashboard',
-        loadChildren: () => import('./views/dashboard/dashboard.module').then(m => m.DashboardModule)
+        path: 'account',
+        loadChildren: () => import('./views/account/account.module').then(m => m.AccountModule)
       },
       {
         path: 'icons',

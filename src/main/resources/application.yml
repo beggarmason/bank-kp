@@ -19,3 +19,8 @@ spring:
         temp:
           use_jdbc_metadata_defaults: false
     show-sql: true
+
+    security:
+      user:
+        name: admin
+        password: admin

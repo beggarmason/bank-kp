@@ -22,9 +22,11 @@ public class Amount {
     private Long balance;
 
     @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "deposit")
     private Deposit deposit;
 
     @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "account")
     private Account account;
 
     public Long getId() {
