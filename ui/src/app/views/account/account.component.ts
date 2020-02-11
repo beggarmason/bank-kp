@@ -1,8 +1,10 @@
-import {ChangeDetectionStrategy, Component, OnInit} from '@angular/core';
+import {ChangeDetectionStrategy, ChangeDetectorRef, Component, OnInit} from '@angular/core';
 import {HttpClient} from "@angular/common/http";
 import {environment} from "../../../environments/environment";
-import {Observable} from "rxjs";
+import {Observable, pipe} from "rxjs";
 import {MatTableDataSource} from "@angular/material/table";
+import {element} from "protractor";
+import { Router } from '@angular/router';
 
 interface dataRecord {
   id: number;
@@ -14,30 +16,49 @@ interface dataRecord {
 
 @Component({
   templateUrl: 'account.component.html',
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.Default
 })
 export class AccountComponent implements OnInit {
 
-  accounts: Observable<dataRecord[]> = this.http.get<any>(environment.apiUrl + '/bank/accounts');
+  // accounts: Observable<dataRecord[]> = this.http.get<any>(environment.apiUrl + '/bank/accounts');
 
-  public displayedColumns = ['id', 'created', 'active', 'person', 'edit', 'remove'];
+  accounts: dataRecord[];
+  public displayedColumns = ['number', 'id', 'created', 'active', 'person', 'edit', 'remove'];
 
   public dataSource = new MatTableDataSource<dataRecord>();
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.http.get<any>(environment.apiUrl + '/bank/accounts').subscribe(result => {
+      this.accounts = result;
+      this.dataSource.data = this.accounts;
+    });
+  }
 
   public doFilter = (value: string) => {
     this.dataSource.filter = value.trim().toLocaleLowerCase();
   }
 
-  constructor(private http: HttpClient) {}
-
-  public edit(): void {
-    console.log('edit');
+  constructor(private http: HttpClient, private router: Router) {
   }
 
-  public remove(): void {
-    console.log('remove');
+  public edit(id: number, idx: number): void {
+
+    this.router.navigateByUrl('accountEdit');
+    // this.http.get<any>(environment.apiUrl + "/bank/account/"+id).subscribe(account => {
+    //
+    // });
+  }
+
+  public remove(id: number, idx: number): void {
+    this.http.get<any>(environment.apiUrl + "/bank/accounts/remove/" + id)
+      .subscribe(result => console.log(result),
+        error => {
+          console.log(error);
+          throw error;
+        }, () => {
+          this.accounts.splice(idx, 1);
+          this.dataSource = new MatTableDataSource(this.accounts);
+        });
   }
 
   public add(): void {

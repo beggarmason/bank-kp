@@ -1,7 +1,5 @@
 package edu.tusur.kp.jpa.dto;
 
-import edu.tusur.kp.jpa.model.Person;
-import edu.tusur.kp.jpa.model.Restriction;
 import java.util.Date;
 import java.util.List;
 
@@ -10,8 +8,8 @@ public class AccountDto {
     private Long id;
     private Boolean active;
     private Date created;
-    private List<Restriction> restriction;
-    private Person person;
+    private List<RestrictionDto> restriction;
+    private PersonDto person;
 
     public Long getId() {
         return id;
@@ -37,19 +35,19 @@ public class AccountDto {
         this.created = created;
     }
 
-    public List<Restriction> getRestriction() {
+    public List<RestrictionDto> getRestriction() {
         return restriction;
     }
 
-    public void setRestriction(List<Restriction> restriction) {
+    public void setRestriction(List<RestrictionDto> restriction) {
         this.restriction = restriction;
     }
 
-    public Person getPerson() {
+    public PersonDto getPerson() {
         return person;
     }
 
-    public void setPerson(Person person) {
+    public void setPerson(PersonDto person) {
         this.person = person;
     }
 

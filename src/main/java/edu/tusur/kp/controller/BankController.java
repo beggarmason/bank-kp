@@ -36,6 +36,20 @@ public class BankController {
     }
 
     @ResponseBody
+    @GetMapping("/accounts/remove/{id}")
+    public ResponseEntity<Boolean> removeAccount(@PathVariable("id") Long id) {
+        Boolean aBoolean = bankService.removeAccount(id);
+        return ResponseEntity.ok(aBoolean);
+    }
+
+    @ResponseBody
+    @GetMapping("/accounts/edit/{action}")
+    public ResponseEntity<AccountDto> editAccount(@PathVariable("action") String action, @RequestBody AccountDto accountDto) {
+        AccountDto resultDto = bankService.editAccount(accountDto, action, mapper);
+        return ResponseEntity.ok(resultDto);
+    }
+
+    @ResponseBody
     @GetMapping("/account/{id}")
     public ResponseEntity<AccountDto> getAccountById(@PathVariable("id") Long id) {
         Optional<Account> account = bankService.getAccount(id);
