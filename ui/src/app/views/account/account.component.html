@@ -30,7 +30,7 @@
       <mat-cell *matCellDef="let user">{{user.person?.id}}</mat-cell>
     </ng-container>
 
-    <ng-container matColumnDef="edit">
+    <ng-container id="eb" matColumnDef="edit" class="edit-button">
       <mat-header-cell *matHeaderCellDef>EDIT</mat-header-cell>
       <mat-cell *matCellDef="let row; let idx = index">
         <button mat-button (click)="edit(idx)">
@@ -39,7 +39,7 @@
       </mat-cell>
     </ng-container>
 
-    <ng-container matColumnDef="remove">
+    <ng-container matColumnDef="remove" class="remove-button">
       <mat-header-cell *matHeaderCellDef>REMOVE</mat-header-cell>
       <mat-cell *matCellDef="let row; let idx = index">
         <button mat-button (click)="remove(row.id, idx)">
@@ -57,6 +57,6 @@
     <!--    <mat-paginator [length]="5" [pageSize]="3" [pageSizeOptions]="[5, 10, 25]">-->
   </mat-table>
   <br>
-  <button type="button" (click)="add()"> Добавить запись</button>
-  <button type="button" (click)="print()"> Печать</button>
+  <button type="button" (click)="add()" class="add-button" > Добавить запись</button>
+  <button type="button" (click)="print()" class="print-button"> Печать</button>
 </div>

@@ -15,7 +15,15 @@ interface dataRecord {
 
 @Component({
   templateUrl: 'account.component.html',
-  changeDetection: ChangeDetectionStrategy.Default
+  changeDetection: ChangeDetectionStrategy.Default,
+  styles: ['@media print\n' +
+  '{\n' +
+  '  .add-button, .add-button *, .edit-button, .edit-button *,\n' +
+  '  .remove-button, .remove-button *, .print-button, .print-button *\n' +
+  '  {\n' +
+  '    display: none !important;\n' +
+  '  }\n' +
+  '}\n']
 })
 export class AccountComponent implements OnInit {
 
@@ -60,6 +68,11 @@ export class AccountComponent implements OnInit {
   }
 
   public print(): void {
-    console.log('print');
+    let buttons = document.getElementsByTagName('button');
+    for (var i = 0; i < buttons.length; i++) {
+      var button = buttons[i];
+      button.setAttribute('display','none');
+    }
+    window.print();
   }
 }
