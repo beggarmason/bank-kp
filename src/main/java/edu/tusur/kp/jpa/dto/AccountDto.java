@@ -7,9 +7,11 @@ public class AccountDto {
 
     private Long id;
     private Boolean active;
+    private String number;
     private Date created;
     private List<RestrictionDto> restriction;
     private PersonDto person;
+    private Long personId;
 
     public Long getId() {
         return id;
@@ -51,12 +53,30 @@ public class AccountDto {
         this.person = person;
     }
 
+    public String getNumber() {
+        return number;
+    }
+
+    public void setNumber(String number) {
+        this.number = number;
+    }
+
+    public Long getPersonId() {
+        return personId;
+    }
+
+    public void setPersonId(Long personId) {
+        this.personId = personId;
+    }
+
     @Override
     public String toString() {
         return "AccountDto{" +
                 "id=" + id +
                 ", active=" + active +
+                ", number=" + number +
                 ", created=" + created +
+                ", personId=" + personId +
                 ", restriction=" + restriction +
                 ", person=" + person +
                 '}';

@@ -55,33 +55,41 @@ public class BankService {
         return false;
     }
 
-    public AccountDto editAccount(AccountDto accountDto, String type, ModelMapper mapper) {
-        if (accountDto.getId() == null)
+    public AccountDto createAccount(AccountDto accountDto, ModelMapper mapper) {
+        Account account = new Account();
+        account.setNumber(accountDto.getNumber());
+        account.setActive(accountDto.getActive());
+        account.setCreated(accountDto.getCreated());
+        Optional<Person> byId = personRepository.findById(accountDto.getPersonId());
+        byId.ifPresent(account::setPerson);
+
+        account.setRestriction(null);
+        Account save = accountRepository.save(account);
+        mapper.map(save, accountDto);
+        return accountDto;
+    }
+
+    public AccountDto editAccount(AccountDto accountDto, Long id, ModelMapper mapper) {
+        System.out.println(accountDto);
+        if (id == null)
             return accountDto;
 
-        switch (type) {
-            case "edit":
-                Optional<Account> byId = accountRepository.findById(accountDto.getId());
-                if (byId.isPresent()) {
-                    Account account = byId.get();
-                    account.setId(accountDto.getId());
-                    account.setActive(accountDto.getActive());
-                    account.setCreated(accountDto.getCreated());
-                    Account save = accountRepository.save(account);
-                    mapper.map(save, accountDto);
-                }
-                return accountDto;
+        Optional<Account> byId = accountRepository.findById(id);
+        if (byId.isPresent()) {
+            Account account = byId.get();
+            account.setActive(accountDto.getActive());
+            account.setCreated(accountDto.getCreated());
+            account.setNumber(accountDto.getNumber());
 
-            case "create":
-                Account account = new Account();
-                account.setCreated(accountDto.getCreated());
-                account.setActive(accountDto.getActive());
-                Person person = new Person();
-                mapper.map(accountDto.getPerson(), person);
-                account.setPerson(person);
-                Account save = accountRepository.save(account);
-                return accountDto;
+            if(accountDto.getPersonId() != null) {
+                Optional<Person> byId1 = personRepository.findById(accountDto.getPersonId());
+                byId1.ifPresent(account::setPerson);
+            }
+
+            Account save = accountRepository.save(account);
+            mapper.map(save, accountDto);
         }
+
         return accountDto;
     }
 

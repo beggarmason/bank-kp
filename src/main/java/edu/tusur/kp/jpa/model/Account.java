@@ -18,6 +18,8 @@ public class Account {
     @CreatedDate
     private Date created;
 
+    private String number;
+
     @OneToMany(cascade = CascadeType.ALL)
     private List<Restriction> restriction;
 
@@ -30,6 +32,7 @@ public class Account {
         return "Account{" +
                 "id=" + id +
                 ", active=" + active +
+                ", number=" + number +
                 ", created=" + created +
                 ", restriction=" + restriction +
                 ", person=" + person +
@@ -74,5 +77,13 @@ public class Account {
 
     public void setPerson(Person person) {
         this.person = person;
+    }
+
+    public String getNumber() {
+        return number;
+    }
+
+    public void setNumber(String number) {
+        this.number = number;
     }
 }

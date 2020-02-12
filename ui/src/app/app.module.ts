@@ -1,6 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { LocationStrategy, HashLocationStrategy } from '@angular/common';
+import {LocationStrategy, HashLocationStrategy, DatePipe} from '@angular/common';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { PerfectScrollbarModule } from 'ngx-perfect-scrollbar';
@@ -38,9 +38,14 @@ import { AppRoutingModule } from './app.routing';
 import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
 import { TabsModule } from 'ngx-bootstrap/tabs';
 import { ChartsModule } from 'ng2-charts';
+import { HttpClientModule } from '@angular/common/http';
 
 
 import { MatTableModule } from "@angular/material/table";
+import {EditComponent} from "./views/account/edit.component";
+import {FormsModule} from "@angular/forms";
+import {MatFormFieldModule} from "@angular/material/form-field";
+import {AddComponent} from "./views/account/add.component";
 
 @NgModule({
   imports: [
@@ -51,15 +56,20 @@ import { MatTableModule } from "@angular/material/table";
     AppAsideModule,
     AppBreadcrumbModule.forRoot(),
     AppFooterModule,
+    HttpClientModule,
     AppHeaderModule,
     AppSidebarModule,
     PerfectScrollbarModule,
     BsDropdownModule.forRoot(),
     TabsModule.forRoot(),
-    ChartsModule
+    ChartsModule,
+    FormsModule,
+    MatFormFieldModule
   ],
   declarations: [
     AppComponent,
+    EditComponent,
+    AddComponent,
     ...APP_CONTAINERS,
     P404Component,
     P500Component
@@ -67,9 +77,11 @@ import { MatTableModule } from "@angular/material/table";
   providers: [{
     provide: LocationStrategy,
     useClass: HashLocationStrategy
+  },{
+    provide: DatePipe
   }],
   exports: [
-    AppComponent
+    AppComponent, EditComponent, AddComponent
   ],
   bootstrap: [AppComponent]
 })

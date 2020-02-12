@@ -5,7 +5,6 @@ import {BsDropdownModule} from 'ngx-bootstrap/dropdown';
 import {ButtonsModule} from 'ngx-bootstrap/buttons';
 
 import {AccountComponent} from './account.component';
-import {EditComponent} from './edit.component';
 import {DashboardRoutingModule} from './account-routing.module';
 import {HttpClientModule} from '@angular/common/http';
 import {CommonModule} from "@angular/common";
@@ -30,7 +29,7 @@ import {MatFormFieldModule} from "@angular/material/form-field";
     MatInputModule,
     MatFormFieldModule
   ],
-  declarations: [AccountComponent, EditComponent]
+  declarations: [AccountComponent]
 })
 export class AccountModule {
 }

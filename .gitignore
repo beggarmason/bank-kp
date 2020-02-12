@@ -32,3 +32,4 @@ build/
 
 ### MAVEN ###
 .mvn*
+/ui/node_modules

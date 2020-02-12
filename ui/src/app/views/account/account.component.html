@@ -1,11 +1,11 @@
 <div>
   <mat-table [dataSource]="dataSource">
 
-    <mat-form-field>
-      <input matInput type="text" (keyup)="doFilter($event.target.value)" placeholder="Filter">
-    </mat-form-field>
+    <!--    <mat-form-field>-->
+    <!--      <input matInput type="text" (keyup)="doFilter($event.target.value)" placeholder="Filter">-->
+    <!--    </mat-form-field>-->
 
-    <ng-container matColumnDef="number">
+    <ng-container matColumnDef="#">
       <mat-header-cell *matHeaderCellDef>#</mat-header-cell>
       <mat-cell *matCellDef="let i = index">{{i + 1}}</mat-cell>
     </ng-container>
@@ -21,22 +21,30 @@
       <mat-header-cell *matHeaderCellDef>ACTIVE</mat-header-cell>
       <mat-cell *matCellDef="let user">{{user.active}}</mat-cell>
     </ng-container>
+    <ng-container matColumnDef="number">
+      <mat-header-cell *matHeaderCellDef>NUMBER</mat-header-cell>
+      <mat-cell *matCellDef="let user">{{user.number}}</mat-cell>
+    </ng-container>
     <ng-container matColumnDef="person">
       <mat-header-cell *matHeaderCellDef>PERSON</mat-header-cell>
-      <mat-cell *matCellDef="let user">{{user.person.id}}</mat-cell>
+      <mat-cell *matCellDef="let user">{{user.person?.id}}</mat-cell>
     </ng-container>
 
     <ng-container matColumnDef="edit">
-      <mat-header-cell  *matHeaderCellDef >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;EDIT</mat-header-cell>
+      <mat-header-cell *matHeaderCellDef>EDIT</mat-header-cell>
       <mat-cell *matCellDef="let row; let idx = index">
-        <button mat-button (click)="edit(row.id, idx)"><mat-icon>create</mat-icon></button>
+        <button mat-button (click)="edit(idx)">
+          <mat-icon>create</mat-icon>
+        </button>
       </mat-cell>
     </ng-container>
 
     <ng-container matColumnDef="remove">
-      <mat-header-cell  *matHeaderCellDef> &nbsp;&nbsp;REMOVE</mat-header-cell>
-      <mat-cell *matCellDef="let row; let idx = index" >
-        <button mat-button (click)="remove(row.id, idx)"><mat-icon>clear</mat-icon></button>
+      <mat-header-cell *matHeaderCellDef>REMOVE</mat-header-cell>
+      <mat-cell *matCellDef="let row; let idx = index">
+        <button mat-button (click)="remove(row.id, idx)">
+          <mat-icon>clear</mat-icon>
+        </button>
       </mat-cell>
     </ng-container>
 
@@ -46,8 +54,9 @@
       <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
     </ng-container>
 
-<!--    <mat-paginator [length]="5" [pageSize]="3" [pageSizeOptions]="[5, 10, 25]">-->
+    <!--    <mat-paginator [length]="5" [pageSize]="3" [pageSizeOptions]="[5, 10, 25]">-->
   </mat-table>
   <br>
-  <button type="button" (click)="add()"> Добавить запись</button>   <button type="button" (click)="print()"> Печать</button>
+  <button type="button" (click)="add()"> Добавить запись</button>
+  <button type="button" (click)="print()"> Печать</button>
 </div>

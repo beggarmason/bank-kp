@@ -43,9 +43,16 @@ public class BankController {
     }
 
     @ResponseBody
-    @GetMapping("/accounts/edit/{action}")
-    public ResponseEntity<AccountDto> editAccount(@PathVariable("action") String action, @RequestBody AccountDto accountDto) {
-        AccountDto resultDto = bankService.editAccount(accountDto, action, mapper);
+    @PostMapping("/accounts/edit/{id}")
+    public ResponseEntity<AccountDto> editAccount(@PathVariable("id") Long id, @RequestBody AccountDto accountDto) {
+        AccountDto resultDto = bankService.editAccount(accountDto, id, mapper);
+        return ResponseEntity.ok(resultDto);
+    }
+
+    @ResponseBody
+    @PostMapping("/accounts/add")
+    public ResponseEntity<AccountDto> addAccount(@RequestBody AccountDto accountDto) {
+        AccountDto resultDto = bankService.createAccount(accountDto, mapper);
         return ResponseEntity.ok(resultDto);
     }
 
@@ -57,5 +64,7 @@ public class BankController {
         account.ifPresent(acc -> mapper.map(acc, accountDto));
         return ResponseEntity.ok(accountDto);
     }
+
+    // -----------------------------------------------------------------------------------------------------------------------------------------------------
 
 }

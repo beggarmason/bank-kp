@@ -1,17 +1,36 @@
-import { NgModule } from '@angular/core';
-import { Routes, RouterModule } from '@angular/router';
+import {NgModule} from '@angular/core';
+import {Routes, RouterModule} from '@angular/router';
 
 // Import Containers
-import { DefaultLayoutComponent } from './containers';
+import {DefaultLayoutComponent} from './containers';
 
-import { P404Component } from './views/error/404.component';
-import { P500Component } from './views/error/500.component';
+import {P404Component} from './views/error/404.component';
+import {P500Component} from './views/error/500.component';
+import {EditComponent} from "./views/account/edit.component";
+import {analyticsPackageSafelist} from "@angular/cli/models/analytics";
+import {AddComponent} from "./views/account/add.component";
+
+interface dataRecord {
+  id: number;
+  active: boolean;
+  created: Date;
+  restriction: [];
+  person: any;
+}
 
 export const routes: Routes = [
   {
     path: '',
     redirectTo: 'account',
     pathMatch: 'full',
+  },
+  {
+    path: 'accountEdit/:id',
+    component: EditComponent
+  },
+  {
+    path: 'account/add',
+    component: AddComponent
   },
   {
     path: '404',
