@@ -6,11 +6,9 @@ import { Router } from '@angular/router';
 
 interface dataRecord {
   id: number;
-  active: boolean;
-  number: string;
+  name: string;
+  year: number;
   created: Date;
-  restriction: [];
-  person: any;
 }
 
 @Component({
@@ -28,12 +26,12 @@ interface dataRecord {
 export class TypeComponent implements OnInit {
 
   accounts: dataRecord[];
-  public displayedColumns = ['#', 'id', 'created', 'active', 'number', 'person', 'edit', 'remove'];
+  public displayedColumns = ['#', 'id', 'created', 'name', 'year', 'edit', 'remove'];
 
   public dataSource = new MatTableDataSource<dataRecord>();
 
   ngOnInit(): void {
-    this.http.get<any>(environment.apiUrl + '/bank/accounts').subscribe(result => {
+    this.http.get<any>(environment.apiUrl + '/bank/types').subscribe(result => {
       this.accounts = result;
       this.dataSource.data = this.accounts;
     });
@@ -48,11 +46,11 @@ export class TypeComponent implements OnInit {
   public edit(idx: number): void {
 
     let account = this.accounts[idx];
-    this.router.navigate(['accountEdit', account.id]);
+    this.router.navigate(['typeEdit', account.id]);
   }
 
   public remove(id: number, idx: number): void {
-    this.http.get<any>(environment.apiUrl + "/bank/accounts/remove/" + id)
+    this.http.get<any>(environment.apiUrl + "/bank/type/remove/" + id)
       .subscribe(result => console.log(result),
         error => {
           console.log(error);
@@ -64,7 +62,7 @@ export class TypeComponent implements OnInit {
   }
 
   public add(): void {
-    this.router.navigate(['account/add']);
+    this.router.navigate(['type/add']);
   }
 
   public print(): void {

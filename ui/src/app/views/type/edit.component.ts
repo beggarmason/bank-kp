@@ -6,12 +6,9 @@ import { DatePipe } from '@angular/common';
 
 interface dataRecord {
   id: number;
-  active: boolean;
-  number: string;
+  name: string;
+  year: number;
   created: string;
-  restriction: [];
-  person: any;
-  personId: number
 }
 
 @Component({
@@ -28,7 +25,7 @@ export class TypeEditComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.http.get<any>(environment.apiUrl + '/bank/account/' + this.route.snapshot.params.id).subscribe(data => {
+    this.http.get<any>(environment.apiUrl + '/bank/type/' + this.route.snapshot.params.id).subscribe(data => {
       this.account = data;
       this.originalId = data.id;
       let s = this.account.created.toString();
@@ -40,14 +37,14 @@ export class TypeEditComponent implements OnInit {
   save(): void {
     console.log(this.account);
     this.http.post<any>
-    (environment.apiUrl + '/bank/accounts/edit/'+this.originalId, this.account)
+    (environment.apiUrl + '/bank/type/edit/'+this.originalId, this.account)
       .subscribe(e => console.log(e),
           error => console.log(error));
-    this.router.navigate(['account']);
+    this.router.navigate(['type']);
   }
 
   back(): void {
-    this.router.navigate(['account']);
+    this.router.navigate(['type']);
   }
 
 }

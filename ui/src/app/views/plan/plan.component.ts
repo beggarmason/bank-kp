@@ -7,10 +7,8 @@ import { Router } from '@angular/router';
 interface dataRecord {
   id: number;
   active: boolean;
-  number: string;
+  year: number;
   created: Date;
-  restriction: [];
-  person: any;
 }
 
 @Component({
@@ -33,7 +31,7 @@ export class PlanComponent implements OnInit {
   public dataSource = new MatTableDataSource<dataRecord>();
 
   ngOnInit(): void {
-    this.http.get<any>(environment.apiUrl + '/bank/plan').subscribe(result => {
+    this.http.get<any>(environment.apiUrl + '/bank/plans').subscribe(result => {
       this.accounts = result;
       this.dataSource.data = this.accounts;
     });

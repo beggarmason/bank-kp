@@ -55,7 +55,7 @@ export class AccountAddComponent implements OnInit {
     console.log(this.account);
 
     this.http.post<any>
-    (environment.apiUrl + '/bank/accounts/add', this.account)
+    (environment.apiUrl + '/bank/account/add', this.account)
       .subscribe(e => console.log(e),
         error => console.log(error));
     this.router.navigate(['account']);

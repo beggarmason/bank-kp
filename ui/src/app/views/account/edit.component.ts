@@ -40,7 +40,7 @@ export class AccountEditComponent implements OnInit {
   save(): void {
     console.log(this.account);
     this.http.post<any>
-    (environment.apiUrl + '/bank/accounts/edit/'+this.originalId, this.account)
+    (environment.apiUrl + '/bank/account/edit/'+this.originalId, this.account)
       .subscribe(e => console.log(e),
           error => console.log(error));
     this.router.navigate(['account']);

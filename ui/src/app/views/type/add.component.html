@@ -4,7 +4,7 @@
     <!-- Breadcrumb -->
     <!-- breaking change 'cui-breadcrumb' -->
     <cui-breadcrumb>
-      <!-- Breadcrumb Menu-->ADD ACCOUNT
+      <!-- Breadcrumb Menu-->Добавить тип
       <li class="breadcrumb-menu d-md-down-none">
         <div class="btn-group" role="group" aria-label="Button group with nested dropdown">
         </div>
@@ -16,12 +16,10 @@
 
         <th>Дата создания</th>
         <tr><input type="date" [(ngModel)]="created"></tr><br/>
-        <th>Активность</th>
-        <tr><input type="checkbox" [(ngModel)]="active"></tr><br/>
-        <th>Номер</th>
-        <tr><input type="text" [(ngModel)]="number"></tr><br/>
-        <th>ID Персоны</th>
-        <tr><input [(ngModel)]="personId"></tr><br/>
+        <th>Год</th>
+        <tr><input type="number" [(ngModel)]="year"></tr><br/>
+        <th>Название</th>
+        <tr><input type="text" [(ngModel)]="name"></tr><br/>
         <br/>
 
 

@@ -8,7 +8,7 @@ const routes: Routes = [
     path: '',
     component: BonusComponent,
     data: {
-      title: 'Bonus'
+      title: 'Бонус'
     }
   }
 ];

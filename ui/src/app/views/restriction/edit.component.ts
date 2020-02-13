@@ -6,12 +6,8 @@ import { DatePipe } from '@angular/common';
 
 interface dataRecord {
   id: number;
-  active: boolean;
-  number: string;
+  year: number;
   created: string;
-  restriction: [];
-  person: any;
-  personId: number
 }
 
 @Component({
@@ -28,7 +24,7 @@ export class RestrictionEditComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.http.get<any>(environment.apiUrl + '/bank/account/' + this.route.snapshot.params.id).subscribe(data => {
+    this.http.get<any>(environment.apiUrl + '/bank/restriction/' + this.route.snapshot.params.id).subscribe(data => {
       this.account = data;
       this.originalId = data.id;
       let s = this.account.created.toString();
@@ -40,14 +36,14 @@ export class RestrictionEditComponent implements OnInit {
   save(): void {
     console.log(this.account);
     this.http.post<any>
-    (environment.apiUrl + '/bank/accounts/edit/'+this.originalId, this.account)
+    (environment.apiUrl + '/bank/restriction/edit/'+this.originalId, this.account)
       .subscribe(e => console.log(e),
           error => console.log(error));
-    this.router.navigate(['account']);
+    this.router.navigate(['restriction']);
   }
 
   back(): void {
-    this.router.navigate(['account']);
+    this.router.navigate(['restriction']);
   }
 
 }

@@ -2,39 +2,39 @@ import { INavData } from '@coreui/angular';
 
 export const navItems: INavData[] = [
   {
-    name: 'Account',
+    name: 'Аккаунт',
     url: '/account'
   },
   {
-    name: 'Amount',
+    name: 'Счет',
     url: '/amount'
   },
   {
-    name: 'Bank',
+    name: 'Банк',
     url: '/bank'
   },
   {
-    name: 'Bonus',
+    name: 'Бонус',
     url: '/bonus'
   },
   {
-    name: 'City',
+    name: 'Город',
     url: '/city'
   },
   {
-    name: 'Deposit',
+    name: 'Депозит',
     url: '/deposit'
   },
   {
-    name: 'Plan',
+    name: 'План',
     url: '/plan'
   },
   {
-    name: 'Type',
+    name: 'Тип',
     url: '/type'
   },
   {
-    name: 'Restriction',
+    name: 'Ограничение',
     url: '/restriction'
   }
 ];

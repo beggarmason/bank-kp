@@ -30,7 +30,7 @@ export class CityComponent implements OnInit {
   public dataSource = new MatTableDataSource<dataRecord>();
 
   ngOnInit(): void {
-    this.http.get<any>(environment.apiUrl + '/bank/city').subscribe(result => {
+    this.http.get<any>(environment.apiUrl + '/bank/cities').subscribe(result => {
       this.accounts = result;
       this.dataSource.data = this.accounts;
     });

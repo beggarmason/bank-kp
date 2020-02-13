@@ -46,15 +46,15 @@ export class BonusAddComponent implements OnInit {
     console.log(this.bonus);
 
     this.http.post<any>
-    (environment.apiUrl + '/bank/bank/add', this.bonus)
+    (environment.apiUrl + '/bank/bonus/add', this.bonus)
       .subscribe(e => console.log(e),
         error => console.log(error));
-    this.router.navigate(['bank']);
+    this.router.navigate(['bonus']);
 
   }
 
   back(): void {
-    this.router.navigate(['bank']);
+    this.router.navigate(['bonus']);
   }
 
 }

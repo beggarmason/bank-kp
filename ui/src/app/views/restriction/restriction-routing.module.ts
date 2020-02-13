@@ -8,7 +8,7 @@ const routes: Routes = [
     path: '',
     component: RestrictionComponent,
     data: {
-      title: 'Restriction'
+      title: 'Ограничения'
     }
   }
 ];

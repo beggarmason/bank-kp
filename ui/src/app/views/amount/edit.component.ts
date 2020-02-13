@@ -43,7 +43,7 @@ export class AmountEditComponent implements OnInit {
   save(): void {
     console.log(this.amount);
     this.http.post<any>
-    (environment.apiUrl + '/bank/amounts/edit/'+this.originalId, this.amount)
+    (environment.apiUrl + '/bank/amount/edit/'+this.originalId, this.amount)
       .subscribe(e => console.log(e),
           error => console.log(error));
     this.router.navigate(['amount']);

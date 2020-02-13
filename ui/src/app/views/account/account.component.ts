@@ -52,7 +52,7 @@ export class AccountComponent implements OnInit {
   }
 
   public remove(id: number, idx: number): void {
-    this.http.get<any>(environment.apiUrl + "/bank/accounts/remove/" + id)
+    this.http.get<any>(environment.apiUrl + "/bank/account/remove/" + id)
       .subscribe(result => console.log(result),
         error => {
           console.log(error);

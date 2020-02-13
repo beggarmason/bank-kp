@@ -25,7 +25,7 @@ export class BonusEditComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.http.get<any>(environment.apiUrl + '/bank/bank/' + this.route.snapshot.params.id).subscribe(data => {
+    this.http.get<any>(environment.apiUrl + '/bank/bonus/' + this.route.snapshot.params.id).subscribe(data => {
       this.account = data;
       this.originalId = data.id;
       let s = this.account.created.toString();
@@ -37,7 +37,7 @@ export class BonusEditComponent implements OnInit {
   save(): void {
     console.log(this.account);
     this.http.post<any>
-    (environment.apiUrl + '/bank/bonuses/edit/'+this.originalId, this.account)
+    (environment.apiUrl + '/bank/bonus/edit/'+this.originalId, this.account)
       .subscribe(e => console.log(e),
           error => console.log(error));
     this.router.navigate(['bank']);

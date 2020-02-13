@@ -8,7 +8,7 @@ const routes: Routes = [
     path: '',
     component: CityComponent,
     data: {
-      title: 'City'
+      title: 'Город'
     }
   }
 ];

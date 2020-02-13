@@ -14,20 +14,20 @@
       <mat-cell *matCellDef="let user">{{user.id}}</mat-cell>
     </ng-container>
     <ng-container matColumnDef="created">
-      <mat-header-cell *matHeaderCellDef>CREATED</mat-header-cell>
+      <mat-header-cell *matHeaderCellDef>ДАТА СОЗДАНИЯ</mat-header-cell>
       <mat-cell *matCellDef="let user">{{user.created | date}}</mat-cell>
     </ng-container>
     <ng-container matColumnDef="active">
-      <mat-header-cell *matHeaderCellDef>ACTIVE</mat-header-cell>
+      <mat-header-cell *matHeaderCellDef>АКТИВНОСТЬ</mat-header-cell>
       <mat-cell *matCellDef="let user">{{user.active}}</mat-cell>
     </ng-container>
     <ng-container matColumnDef="year">
-      <mat-header-cell *matHeaderCellDef>YEAR</mat-header-cell>
+      <mat-header-cell *matHeaderCellDef>ГОД</mat-header-cell>
       <mat-cell *matCellDef="let user">{{user.year}}</mat-cell>
     </ng-container>
 
     <ng-container id="eb" matColumnDef="edit" class="edit-button">
-      <mat-header-cell *matHeaderCellDef>EDIT</mat-header-cell>
+      <mat-header-cell *matHeaderCellDef>Редактировать</mat-header-cell>
       <mat-cell *matCellDef="let row; let idx = index">
         <button mat-button (click)="edit(idx)">
           <mat-icon>create</mat-icon>
@@ -36,7 +36,7 @@
     </ng-container>
 
     <ng-container matColumnDef="remove" class="remove-button">
-      <mat-header-cell *matHeaderCellDef>REMOVE</mat-header-cell>
+      <mat-header-cell *matHeaderCellDef>Удалить</mat-header-cell>
       <mat-cell *matCellDef="let row; let idx = index">
         <button mat-button (click)="remove(row.id, idx)">
           <mat-icon>clear</mat-icon>

@@ -66,7 +66,7 @@ export class AmountAddComponent implements OnInit {
     console.log(this.amount);
 
     this.http.post<any>
-    (environment.apiUrl + '/bank/amounts/add', this.amount)
+    (environment.apiUrl + '/bank/amount/add', this.amount)
       .subscribe(e => console.log(e),
         error => console.log(error));
     this.router.navigate(['amount']);

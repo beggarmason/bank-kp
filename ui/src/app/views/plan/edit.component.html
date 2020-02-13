@@ -4,7 +4,7 @@
     <!-- Breadcrumb -->
     <!-- breaking change 'cui-breadcrumb' -->
     <cui-breadcrumb>
-      <!-- Breadcrumb Menu-->EDIT ACCOUNT
+      <!-- Breadcrumb Menu-->Редактировать план
       <li class="breadcrumb-menu d-md-down-none">
         <div class="btn-group" role="group" aria-label="Button group with nested dropdown">
         </div>
@@ -13,16 +13,12 @@
     <div class="container-fluid">
       <router-outlet></router-outlet>
       <div>
-        <th>ID</th>
-        <tr><input [(ngModel)]="account.id"></tr><br/>
+        <th>Год</th>
+        <tr><input type="number" [(ngModel)]="account.id"></tr><br/>
         <th>Дата создания</th>
         <tr><input type="date" [(ngModel)]="account.created"></tr><br/>
         <th>Активность</th>
         <tr><input type="checkbox" [(ngModel)]="account.active"></tr><br/>
-        <th>Номер</th>
-        <tr><input type="text" [(ngModel)]="account.number"></tr><br/>
-        <th>ID Персоны</th>
-        <tr><input [(ngModel)]="account.personId"></tr><br/>
         <br/>
 
         <span><button type="button" (click)="save()">Изменить</button><br/></span><span><button type="button" (click)="back()">Назад</button></span>

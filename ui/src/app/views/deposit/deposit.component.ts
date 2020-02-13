@@ -42,7 +42,7 @@ export class DepositComponent implements OnInit {
   public dataSource = new MatTableDataSource<dataRecord>();
 
   ngOnInit(): void {
-    this.http.get<any>(environment.apiUrl + '/bank/deposit').subscribe(result => {
+    this.http.get<any>(environment.apiUrl + '/bank/deposits').subscribe(result => {
       this.accounts = result;
       this.dataSource.data = this.accounts;
     });
