@@ -1,0 +1,58 @@
+<div>
+  <mat-table [dataSource]="dataSource">
+
+    <!--    <mat-form-field>-->
+    <!--      <input matInput type="text" (keyup)="doFilter($event.target.value)" placeholder="Filter">-->
+    <!--    </mat-form-field>-->
+
+    <ng-container matColumnDef="#">
+      <mat-header-cell *matHeaderCellDef>#</mat-header-cell>
+      <mat-cell *matCellDef="let i = index">{{i + 1}}</mat-cell>
+    </ng-container>
+    <ng-container matColumnDef="id">
+      <mat-header-cell *matHeaderCellDef>ID</mat-header-cell>
+      <mat-cell *matCellDef="let user">{{user.id}}</mat-cell>
+    </ng-container>
+    <ng-container matColumnDef="created">
+      <mat-header-cell *matHeaderCellDef>CREATED</mat-header-cell>
+      <mat-cell *matCellDef="let user">{{user.created | date}}</mat-cell>
+    </ng-container>
+    <ng-container matColumnDef="active">
+      <mat-header-cell *matHeaderCellDef>ACTIVE</mat-header-cell>
+      <mat-cell *matCellDef="let user">{{user.active}}</mat-cell>
+    </ng-container>
+    <ng-container matColumnDef="name">
+      <mat-header-cell *matHeaderCellDef>NAME</mat-header-cell>
+      <mat-cell *matCellDef="let user">{{user.name}}</mat-cell>
+    </ng-container>
+
+    <ng-container id="eb" matColumnDef="edit" class="edit-button">
+      <mat-header-cell *matHeaderCellDef>EDIT</mat-header-cell>
+      <mat-cell *matCellDef="let row; let idx = index">
+        <button mat-button (click)="edit(idx)">
+          <mat-icon>create</mat-icon>
+        </button>
+      </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="remove" class="remove-button">
+      <mat-header-cell *matHeaderCellDef>REMOVE</mat-header-cell>
+      <mat-cell *matCellDef="let row; let idx = index">
+        <button mat-button (click)="remove(row.id, idx)">
+          <mat-icon>clear</mat-icon>
+        </button>
+      </mat-cell>
+    </ng-container>
+
+
+    <ng-container>
+      <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+      <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+    </ng-container>
+
+    <!--    <mat-paginator [length]="5" [pageSize]="3" [pageSizeOptions]="[5, 10, 25]">-->
+  </mat-table>
+  <br>
+  <button type="button" (click)="add()" class="add-button" > Добавить запись</button>
+  <button type="button" (click)="print()" class="print-button"> Печать</button>
+</div>

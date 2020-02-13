@@ -1,0 +1,41 @@
+<div class="app-body">
+  <!-- Main content -->
+  <main class="main">
+    <!-- Breadcrumb -->
+    <!-- breaking change 'cui-breadcrumb' -->
+    <cui-breadcrumb>
+      <!-- Breadcrumb Menu-->Редактировать депозит
+      <li class="breadcrumb-menu d-md-down-none">
+        <div class="btn-group" role="group" aria-label="Button group with nested dropdown">
+        </div>
+      </li>
+    </cui-breadcrumb>
+    <div class="container-fluid">
+      <router-outlet></router-outlet>
+      <div>
+
+        <th>Название</th>
+        <tr><input type="text" [(ngModel)]="account.name"></tr><br/>
+        <th>Валюта</th>
+        <tr><input type="checkbox" [(ngModel)]="account.active"></tr><br/>
+        <th>Оформлен</th>
+        <tr><input type="date" [(ngModel)]="account.from_date"></tr><br/>
+        <th>Действителен до</th>
+        <tr><input type="date" [(ngModel)]="account.to_date"></tr><br/>
+        <th>Год</th>
+        <tr><input type="number" [(ngModel)]="account.year"></tr><br/>
+        <th>ID бонуса</th>
+        <tr><input type="number" [(ngModel)]="account.bonusid"></tr><br/>
+        <th>ID персоны</th>
+        <tr><input type="number" [(ngModel)]="account.personid"></tr><br/>
+        <th>ID плана</th>
+        <tr><input type="number" [(ngModel)]="account.planid"></tr><br/>
+        <th>ID типа</th>
+        <tr><input type="number" [(ngModel)]="account.typeid"></tr><br/>
+        <br/>
+
+        <span><button type="button" (click)="save()">Изменить</button><br/></span><span><button type="button" (click)="back()">Назад</button></span>
+      </div>
+    </div><!-- /.container-fluid -->
+  </main>
+</div>

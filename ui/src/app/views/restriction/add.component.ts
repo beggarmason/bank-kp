@@ -20,7 +20,7 @@ interface dataRecord {
   changeDetection: ChangeDetectionStrategy.Default,
   providers: [DatePipe]
 })
-export class AccountAddComponent implements OnInit {
+export class RestrictionAddComponent implements OnInit {
 
   @Input('ngModel')
   account: dataRecord = {

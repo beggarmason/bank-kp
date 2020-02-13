@@ -8,11 +8,8 @@ import {DatePipe} from '@angular/common';
 interface dataRecord {
   id: number;
   active: boolean;
-  number: string;
+  name: string;
   created: Date;
-  restriction: [];
-  person: any;
-  personId: number
 }
 
 @Component({
@@ -20,24 +17,19 @@ interface dataRecord {
   changeDetection: ChangeDetectionStrategy.Default,
   providers: [DatePipe]
 })
-export class AccountAddComponent implements OnInit {
+export class BankAddComponent implements OnInit {
 
   @Input('ngModel')
-  account: dataRecord = {
+  bank: dataRecord = {
     id: 0,
     active: false,
-    number: '',
-    created: new Date(),
-    restriction: null,
-    person: null,
-    personId: 0
+    name: '',
+    created: new Date()
   };
 
   active: boolean = false;
-  number: string = '';
+  name: string = '';
   created: Date = new Date();
-  person: number = 0;
-  personId: number = 0;
 
   constructor(private router: Router, private route: ActivatedRoute, private http: HttpClient) {
   }
@@ -47,23 +39,22 @@ export class AccountAddComponent implements OnInit {
 
   save(): void {
 
-    this.account.active = this.active;
-    this.account.created = this.created;
-    this.account.number = this.number;
-    this.account.personId = this.personId;
+    this.bank.active = this.active;
+    this.bank.created = this.created;
+    this.bank.name = this.name;
 
-    console.log(this.account);
+    console.log(this.bank);
 
     this.http.post<any>
-    (environment.apiUrl + '/bank/accounts/add', this.account)
+    (environment.apiUrl + '/bank/banks/add', this.bank)
       .subscribe(e => console.log(e),
         error => console.log(error));
-    this.router.navigate(['account']);
+    this.router.navigate(['bank']);
 
   }
 
   back(): void {
-    this.router.navigate(['account']);
+    this.router.navigate(['bank']);
   }
 
 }

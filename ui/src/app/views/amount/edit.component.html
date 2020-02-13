@@ -1,0 +1,36 @@
+<div class="app-body">
+  <!-- Main content -->
+  <main class="main">
+    <!-- Breadcrumb -->
+    <!-- breaking change 'cui-breadcrumb' -->
+    <cui-breadcrumb>
+      <!-- Breadcrumb Menu-->EDIT AMOUNT
+      <li class="breadcrumb-menu d-md-down-none">
+        <div class="btn-group" role="group" aria-label="Button group with nested dropdown">
+        </div>
+      </li>
+    </cui-breadcrumb>
+    <div class="container-fluid">
+      <router-outlet></router-outlet>
+      <div>
+        <th>Дата создания</th>
+        <tr><input type="date" [(ngModel)]="amount.created"></tr><br/>
+        <th>Активность</th>
+        <tr><input type="checkbox" [(ngModel)]="amount.active"></tr><br/>
+        <th>Баланс</th>
+        <tr><input type="text" [(ngModel)]="amount.balance"></tr><br/>
+        <th>Задолженность</th>
+        <tr><input [(ngModel)]="amount.debt"></tr><br/>
+        <th>Наименование</th>
+        <tr><input [(ngModel)]="amount.name"></tr><br/>
+        <th>ID Аккаунта</th>
+        <tr><input [(ngModel)]="amount.accountId"></tr><br/>
+        <th>ID Депозита</th>
+        <tr><input [(ngModel)]="amount.depositId"></tr><br/>
+        <br/>
+
+        <span><button type="button" (click)="save()">Изменить</button><br/></span><span><button type="button" (click)="back()">Назад</button></span>
+      </div>
+    </div><!-- /.container-fluid -->
+  </main>
+</div>

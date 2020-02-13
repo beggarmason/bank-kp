@@ -1,0 +1,37 @@
+<div class="app-body">
+  <!-- Main content -->
+  <main class="main">
+    <!-- Breadcrumb -->
+    <!-- breaking change 'cui-breadcrumb' -->
+    <cui-breadcrumb>
+      <!-- Breadcrumb Menu-->ADD ACCOUNT
+      <li class="breadcrumb-menu d-md-down-none">
+        <div class="btn-group" role="group" aria-label="Button group with nested dropdown">
+        </div>
+      </li>
+    </cui-breadcrumb>
+    <div class="container-fluid">
+      <router-outlet></router-outlet>
+      <div>
+
+        <th>Дата создания</th>
+        <tr><input type="date" [(ngModel)]="created"></tr><br/>
+        <th>Активность</th>
+        <tr><input type="checkbox" [(ngModel)]="active"></tr><br/>
+        <th>Номер</th>
+        <tr><input type="text" [(ngModel)]="number"></tr><br/>
+        <th>ID Персоны</th>
+        <tr><input [(ngModel)]="personId"></tr><br/>
+        <br/>
+
+
+        <span>
+          <button type="button" (click)="save()">Добавить</button><br/>
+        </span>
+        <span>
+          <button type="button" (click)="back()">Назад</button>
+        </span>
+      </div>
+    </div><!-- /.container-fluid -->
+  </main>
+</div>

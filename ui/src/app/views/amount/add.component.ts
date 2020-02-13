@@ -8,11 +8,14 @@ import {DatePipe} from '@angular/common';
 interface dataRecord {
   id: number;
   active: boolean;
-  number: string;
+  balance: number;
+  debt: number;
+  name: string;
   created: Date;
-  restriction: [];
-  person: any;
-  personId: number
+  account: any;
+  deposit: any;
+  accountId: number
+  depositId: number
 }
 
 @Component({
@@ -20,24 +23,29 @@ interface dataRecord {
   changeDetection: ChangeDetectionStrategy.Default,
   providers: [DatePipe]
 })
-export class AccountAddComponent implements OnInit {
+export class AmountAddComponent implements OnInit {
 
   @Input('ngModel')
-  account: dataRecord = {
+  amount: dataRecord = {
     id: 0,
     active: false,
-    number: '',
+    name: '',
+    debt: 0,
+    balance: 0,
     created: new Date(),
-    restriction: null,
-    person: null,
-    personId: 0
+    account: null,
+    deposit: null,
+    accountId: 1,
+    depositId: 1
   };
 
   active: boolean = false;
-  number: string = '';
+  name: string = '';
+  debt: number = 0;
+  balance: number = 0;
   created: Date = new Date();
-  person: number = 0;
-  personId: number = 0;
+  accountId: number = 1;
+  depositId: number = 1;
 
   constructor(private router: Router, private route: ActivatedRoute, private http: HttpClient) {
   }
@@ -47,23 +55,26 @@ export class AccountAddComponent implements OnInit {
 
   save(): void {
 
-    this.account.active = this.active;
-    this.account.created = this.created;
-    this.account.number = this.number;
-    this.account.personId = this.personId;
+    this.amount.active = this.active;
+    this.amount.created = this.created;
+    this.amount.debt = this.debt;
+    this.amount.balance = this.balance;
+    this.amount.accountId = this.accountId;
+    this.amount.depositId = this.depositId;
+    this.amount.name = this.name;
 
-    console.log(this.account);
+    console.log(this.amount);
 
     this.http.post<any>
-    (environment.apiUrl + '/bank/accounts/add', this.account)
+    (environment.apiUrl + '/bank/amounts/add', this.amount)
       .subscribe(e => console.log(e),
         error => console.log(error));
-    this.router.navigate(['account']);
+    this.router.navigate(['amount']);
 
   }
 
   back(): void {
-    this.router.navigate(['account']);
+    this.router.navigate(['amount']);
   }
 
 }

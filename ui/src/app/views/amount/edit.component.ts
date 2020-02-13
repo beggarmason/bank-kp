@@ -7,11 +7,14 @@ import { DatePipe } from '@angular/common';
 interface dataRecord {
   id: number;
   active: boolean;
-  number: string;
+  balance: number;
+  debt: number;
+  name: string;
   created: string;
-  restriction: [];
-  person: any;
-  personId: number
+  account: any;
+  deposit: any;
+  accountId: number
+  depositId: number
 }
 
 @Component({
@@ -19,35 +22,35 @@ interface dataRecord {
   changeDetection: ChangeDetectionStrategy.Default,
   providers: [DatePipe]
 })
-export class AccountEditComponent implements OnInit {
+export class AmountEditComponent implements OnInit {
 
-  account: dataRecord;
+  amount: dataRecord;
   originalId: number;
 
   constructor(private router: Router, private route: ActivatedRoute, private http: HttpClient, private datePipe: DatePipe) {
   }
 
   ngOnInit(): void {
-    this.http.get<any>(environment.apiUrl + '/bank/account/' + this.route.snapshot.params.id).subscribe(data => {
-      this.account = data;
+    this.http.get<any>(environment.apiUrl + '/bank/amount/' + this.route.snapshot.params.id).subscribe(data => {
+      this.amount = data;
       this.originalId = data.id;
-      let s = this.account.created.toString();
+      let s = this.amount.created.toString();
       let s2 = s.substr(0, 10);
-      this.account.created = s2;
+      this.amount.created = s2;
     })
   }
 
   save(): void {
-    console.log(this.account);
+    console.log(this.amount);
     this.http.post<any>
-    (environment.apiUrl + '/bank/accounts/edit/'+this.originalId, this.account)
+    (environment.apiUrl + '/bank/amounts/edit/'+this.originalId, this.amount)
       .subscribe(e => console.log(e),
           error => console.log(error));
-    this.router.navigate(['account']);
+    this.router.navigate(['amount']);
   }
 
   back(): void {
-    this.router.navigate(['account']);
+    this.router.navigate(['amount']);
   }
 
 }

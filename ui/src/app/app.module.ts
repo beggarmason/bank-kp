@@ -4,12 +4,6 @@ import {LocationStrategy, HashLocationStrategy, DatePipe} from '@angular/common'
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { PerfectScrollbarModule } from 'ngx-perfect-scrollbar';
-import { PERFECT_SCROLLBAR_CONFIG } from 'ngx-perfect-scrollbar';
-import { PerfectScrollbarConfigInterface } from 'ngx-perfect-scrollbar';
-
-const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
-  suppressScrollX: true
-};
 
 import { AppComponent } from './app.component';
 
@@ -42,10 +36,26 @@ import { HttpClientModule } from '@angular/common/http';
 
 
 import { MatTableModule } from "@angular/material/table";
-import {EditComponent} from "./views/account/edit.component";
 import {FormsModule} from "@angular/forms";
 import {MatFormFieldModule} from "@angular/material/form-field";
-import {AddComponent} from "./views/account/add.component";
+import {AccountEditComponent} from "./views/account/edit.component";
+import {AccountAddComponent} from "./views/account/add.component";
+import {AmountAddComponent} from "./views/amount/add.component";
+import {AmountEditComponent} from "./views/amount/edit.component";
+import {BankAddComponent} from "./views/bank/add.component";
+import {BankEditComponent} from "./views/bank/edit.component";
+import {BonusEditComponent} from "./views/bonus/edit.component";
+import {BonusAddComponent} from "./views/bonus/add.component";
+import {CityAddComponent} from "./views/city/add.component";
+import {CityEditComponent} from "./views/city/edit.component";
+import {DepositAddComponent} from "./views/deposit/add.component";
+import {DepositEditComponent} from "./views/deposit/edit.component";
+import {PlanAddComponent} from "./views/plan/add.component";
+import {PlanEditComponent} from "./views/plan/edit.component";
+import {RestrictionAddComponent} from "./views/restriction/add.component";
+import {RestrictionEditComponent} from "./views/restriction/edit.component";
+import {TypeEditComponent} from "./views/type/edit.component";
+import {TypeAddComponent} from "./views/type/add.component";
 
 @NgModule({
   imports: [
@@ -68,8 +78,24 @@ import {AddComponent} from "./views/account/add.component";
   ],
   declarations: [
     AppComponent,
-    EditComponent,
-    AddComponent,
+    AccountEditComponent,
+    AccountAddComponent,
+    AmountAddComponent,
+    AmountEditComponent,
+    BankAddComponent,
+    BankEditComponent,
+    BonusAddComponent,
+    BonusEditComponent,
+    CityAddComponent,
+    CityEditComponent,
+    DepositAddComponent,
+    DepositEditComponent,
+    PlanAddComponent,
+    PlanEditComponent,
+    RestrictionAddComponent,
+    RestrictionEditComponent,
+    TypeEditComponent,
+    TypeAddComponent,
     ...APP_CONTAINERS,
     P404Component,
     P500Component
@@ -81,7 +107,16 @@ import {AddComponent} from "./views/account/add.component";
     provide: DatePipe
   }],
   exports: [
-    AppComponent, EditComponent, AddComponent
+    AppComponent,
+    AccountAddComponent, AccountEditComponent,
+    AmountAddComponent, AmountEditComponent,
+    BankAddComponent, BankEditComponent,
+    BonusAddComponent, BonusEditComponent,
+    CityAddComponent, CityEditComponent,
+    DepositAddComponent, DepositEditComponent,
+    PlanAddComponent, PlanEditComponent,
+    RestrictionAddComponent, RestrictionEditComponent,
+    TypeAddComponent, TypeEditComponent
   ],
   bootstrap: [AppComponent]
 })

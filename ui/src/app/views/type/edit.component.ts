@@ -19,7 +19,7 @@ interface dataRecord {
   changeDetection: ChangeDetectionStrategy.Default,
   providers: [DatePipe]
 })
-export class AccountEditComponent implements OnInit {
+export class TypeEditComponent implements OnInit {
 
   account: dataRecord;
   originalId: number;
