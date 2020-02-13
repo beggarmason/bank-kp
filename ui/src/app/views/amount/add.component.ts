@@ -11,7 +11,6 @@ interface dataRecord {
   balance: number;
   debt: number;
   name: string;
-  created: Date;
   account: any;
   deposit: any;
   accountId: number
@@ -32,7 +31,6 @@ export class AmountAddComponent implements OnInit {
     name: '',
     debt: 0,
     balance: 0,
-    created: new Date(),
     account: null,
     deposit: null,
     accountId: 1,
@@ -43,7 +41,6 @@ export class AmountAddComponent implements OnInit {
   name: string = '';
   debt: number = 0;
   balance: number = 0;
-  created: Date = new Date();
   accountId: number = 1;
   depositId: number = 1;
 
@@ -56,7 +53,6 @@ export class AmountAddComponent implements OnInit {
   save(): void {
 
     this.amount.active = this.active;
-    this.amount.created = this.created;
     this.amount.debt = this.debt;
     this.amount.balance = this.balance;
     this.amount.accountId = this.accountId;

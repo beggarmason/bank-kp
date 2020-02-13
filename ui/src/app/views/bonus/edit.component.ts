@@ -40,11 +40,11 @@ export class BonusEditComponent implements OnInit {
     (environment.apiUrl + '/bank/bonus/edit/'+this.originalId, this.account)
       .subscribe(e => console.log(e),
           error => console.log(error));
-    this.router.navigate(['bank']);
+    this.router.navigate(['bonus']);
   }
 
   back(): void {
-    this.router.navigate(['bank']);
+    this.router.navigate(['bonus']);
   }
 
 }

@@ -10,7 +10,6 @@ interface dataRecord {
   balance: number;
   debt: number;
   name: string;
-  created: Date;
   account: any;
   deposit: any;
   accountId: number
@@ -32,7 +31,7 @@ interface dataRecord {
 export class AmountComponent implements OnInit {
 
   amounts: dataRecord[];
-  public displayedColumns = ['#', 'id', 'created', 'active', 'balance', 'debt', 'name', 'accountid', 'depositid', 'edit', 'remove'];
+  public displayedColumns = ['#', 'id', 'active', 'balance', 'debt', 'name', 'accountid', 'depositid', 'edit', 'remove'];
 
   public dataSource = new MatTableDataSource<dataRecord>();
 

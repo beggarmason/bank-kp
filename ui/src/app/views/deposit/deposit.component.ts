@@ -8,9 +8,9 @@ interface dataRecord {
   id: number;
   active: boolean;
   currency: string;
-  from_date: Date;
+  fromDate: Date;
   name: string;
-  to_date: Date;
+  toDate: Date;
   year: number;
   bonus: any;
   person: any;
@@ -37,7 +37,7 @@ interface dataRecord {
 export class DepositComponent implements OnInit {
 
   accounts: dataRecord[];
-  public displayedColumns = ['#', 'id', 'name', 'currency', 'from_date','to_date', 'year', 'bonus', 'person', 'plan', 'type', 'edit', 'remove'];
+  public displayedColumns = ['#', 'id', 'name', 'currency', 'fromDate','toDate', 'year', 'bonus', 'person', 'plan', 'type', 'edit', 'remove'];
 
   public dataSource = new MatTableDataSource<dataRecord>();
 

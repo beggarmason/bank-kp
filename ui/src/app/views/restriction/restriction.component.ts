@@ -43,7 +43,6 @@ export class RestrictionComponent implements OnInit {
   constructor(private http: HttpClient, private router: Router) {}
 
   public edit(idx: number): void {
-
     let account = this.accounts[idx];
     this.router.navigate(['restrictionEdit', account.id]);
   }

@@ -13,13 +13,9 @@
       <mat-header-cell *matHeaderCellDef>ID</mat-header-cell>
       <mat-cell *matCellDef="let user">{{user.id}}</mat-cell>
     </ng-container>
-    <ng-container matColumnDef="created">
-      <mat-header-cell *matHeaderCellDef>ДАТА СОЗДАНИЯ</mat-header-cell>
-      <mat-cell *matCellDef="let user">{{user.created | date}}</mat-cell>
-    </ng-container>
     <ng-container matColumnDef="active">
       <mat-header-cell *matHeaderCellDef>АКТИВНОСТЬ</mat-header-cell>
-      <mat-cell *matCellDef="let user">{{user.active | date}}</mat-cell>
+      <mat-cell *matCellDef="let user">{{user.active}}</mat-cell>
     </ng-container>
     <ng-container matColumnDef="balance">
       <mat-header-cell *matHeaderCellDef>ОСТАТОК</mat-header-cell>

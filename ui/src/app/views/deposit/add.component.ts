@@ -9,9 +9,9 @@ interface dataRecord {
     id: number;
     active: boolean;
     currency: string;
-    from_date: Date;
+    fromDate: Date;
     name: string;
-    to_date: Date;
+    toDate: Date;
     year: number;
     bonus: any;
     person: any;
@@ -24,9 +24,9 @@ interface dataRecord {
 }
 
 @Component({
-    templateUrl: 'add.component.html',
-    changeDetection: ChangeDetectionStrategy.Default,
-    providers: [DatePipe]
+  templateUrl: 'add.component.html',
+  changeDetection: ChangeDetectionStrategy.Default,
+  providers: [DatePipe]
 })
 export class DepositAddComponent implements OnInit {
 
@@ -35,9 +35,9 @@ export class DepositAddComponent implements OnInit {
         id: 0,
         active: false,
         currency: '',
-        from_date: new Date(),
+        fromDate: new Date(),
         name:  '',
-        to_date: new Date(),
+        toDate: new Date(),
         year:  0,
         bonus: null,
         person: null,
@@ -52,9 +52,9 @@ export class DepositAddComponent implements OnInit {
     id: number = 0;
     active: boolean = false;
     currency: string = '';
-    from_date: Date = new Date();
+    fromDate: Date = new Date();
     name: string = '';
-    to_date: Date = new Date();
+    toDate: Date = new Date();
     year: number = 0;
     bonus: any = null;
     person: any = null;
@@ -65,19 +65,18 @@ export class DepositAddComponent implements OnInit {
     planid: number = 0;
     typeid: number = 0;
 
-    constructor(private router: Router, private route: ActivatedRoute, private http: HttpClient) {
-    }
+  constructor(private router: Router, private route: ActivatedRoute, private http: HttpClient) {
+  }
 
-    ngOnInit(): void {
-    }
+  ngOnInit(): void {
+  }
 
-    save(): void {
+  save(): void {
 
-        this.account.active = this.active;
         this.account.currency = this.currency;
-        this.account.from_date = this.from_date;
+        this.account.fromDate = this.fromDate;
         this.account.name = this.name;
-        this.account.to_date = this.to_date;
+        this.account.toDate = this.toDate;
         this.account.year = this.year;
         this.account.bonus = this.bonus;
         this.account.person = this.person;
@@ -89,18 +88,18 @@ export class DepositAddComponent implements OnInit {
         this.account.typeid = this.typeid;
 
 
-        console.log(this.account);
+    console.log(this.account);
 
-        this.http.post<any>
-        (environment.apiUrl + '/bank/deposit/add', this.account)
-            .subscribe(e => console.log(e),
-                error => console.log(error));
-        this.router.navigate(['deposit']);
+    this.http.post<any>
+    (environment.apiUrl + '/bank/deposit/add', this.account)
+      .subscribe(e => console.log(e),
+        error => console.log(error));
+    this.router.navigate(['deposit']);
 
-    }
+  }
 
-    back(): void {
-        this.router.navigate(['deposit']);
-    }
+  back(): void {
+    this.router.navigate(['deposit']);
+  }
 
 }

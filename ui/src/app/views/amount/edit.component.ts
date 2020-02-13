@@ -10,7 +10,6 @@ interface dataRecord {
   balance: number;
   debt: number;
   name: string;
-  created: string;
   account: any;
   deposit: any;
   accountId: number
@@ -34,9 +33,6 @@ export class AmountEditComponent implements OnInit {
     this.http.get<any>(environment.apiUrl + '/bank/amount/' + this.route.snapshot.params.id).subscribe(data => {
       this.amount = data;
       this.originalId = data.id;
-      let s = this.amount.created.toString();
-      let s2 = s.substr(0, 10);
-      this.amount.created = s2;
     })
   }
 

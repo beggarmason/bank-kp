@@ -18,16 +18,16 @@
       <mat-cell *matCellDef="let user">{{user.name }}</mat-cell>
     </ng-container>
     <ng-container matColumnDef="currency">
-      <mat-header-cell *matHeaderCellDef>АКТИВНОСТЬ</mat-header-cell>
+      <mat-header-cell *matHeaderCellDef>ВАЛЮТА</mat-header-cell>
       <mat-cell *matCellDef="let user">{{user.currency}}</mat-cell>
     </ng-container>
-    <ng-container matColumnDef="from_date">
+    <ng-container matColumnDef="fromDate">
       <mat-header-cell *matHeaderCellDef>СОЗДАН</mat-header-cell>
-      <mat-cell *matCellDef="let user">{{user.from_date | date}}</mat-cell>
+      <mat-cell *matCellDef="let user">{{user.fromDate | date}}</mat-cell>
     </ng-container>
-    <ng-container matColumnDef="to_date">
+    <ng-container matColumnDef="toDate">
       <mat-header-cell *matHeaderCellDef>ДЕЙСТВ. ДО</mat-header-cell>
-      <mat-cell *matCellDef="let user">{{user.to_date | date}}</mat-cell>
+      <mat-cell *matCellDef="let user">{{user.toDate | date}}</mat-cell>
     </ng-container>
     <ng-container matColumnDef="year">
       <mat-header-cell *matHeaderCellDef>ГОД</mat-header-cell>

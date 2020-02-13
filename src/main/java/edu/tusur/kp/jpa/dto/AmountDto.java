@@ -12,6 +12,8 @@ public class AmountDto {
     private Long balance;
     private Deposit deposit;
     private Account account;
+    private Long depositId;
+    private Long accountId;
 
     public Long getId() {
         return id;
@@ -67,5 +69,21 @@ public class AmountDto {
 
     public void setAccount(Account account) {
         this.account = account;
+    }
+
+    public Long getDepositId() {
+        return depositId;
+    }
+
+    public void setDepositId(Long depositId) {
+        this.depositId = depositId;
+    }
+
+    public Long getAccountId() {
+        return accountId;
+    }
+
+    public void setAccountId(Long accountId) {
+        this.accountId = accountId;
     }
 }

@@ -8,9 +8,9 @@ interface dataRecord {
   id: number;
   active: boolean;
   currency: string;
-  from_date: string;
+  fromDate: string;
   name: string;
-  to_date: string;
+  toDate: string;
   year: number;
   bonus: any;
   person: any;
@@ -39,13 +39,13 @@ export class DepositEditComponent implements OnInit {
     this.http.get<any>(environment.apiUrl + '/bank/deposit/' + this.route.snapshot.params.id).subscribe(data => {
       this.account = data;
       this.originalId = data.id;
-      let from_date = this.account.from_date.toString();
-      let to_date = this.account.to_date.toString();
+      let fd = this.account.fromDate.toString();
+      let td = this.account.toDate.toString();
 
-      let s1 = from_date.substr(0, 10);
-      let s2 = to_date.substr(0, 10);
-      this.account.from_date = s1;
-      this.account.to_date = s2;
+      let s1 = fd.substr(0, 10);
+      let s2 = td.substr(0, 10);
+      this.account.fromDate = s1;
+      this.account.toDate = s2;
     })
   }
 
