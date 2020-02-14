@@ -3,6 +3,7 @@ import {HttpClient} from "@angular/common/http";
 import {environment} from "../../../environments/environment";
 import {MatTableDataSource} from "@angular/material/table";
 import { Router } from '@angular/router';
+import {FormControl} from "@angular/forms";
 
 interface dataRecord {
   id: number;
@@ -33,20 +34,69 @@ export class AmountComponent implements OnInit {
   amounts: dataRecord[];
   public displayedColumns = ['#', 'id', 'active', 'balance', 'debt', 'name', 'accountid', 'depositid', 'edit', 'remove'];
 
+  filterValues = {
+    id: 0,
+    balance: 0,
+    debt: 0,
+    name: 0,
+  };
+
   public dataSource = new MatTableDataSource<dataRecord>();
 
   ngOnInit(): void {
     this.http.get<any>(environment.apiUrl + '/bank/amounts').subscribe(result => {
       this.amounts = result;
       this.dataSource.data = this.amounts;
+      this.idFilter.valueChanges
+        .subscribe(
+          id => {
+            this.filterValues.id = id;
+            this.dataSource.filter = JSON.stringify(this.filterValues);
+          }
+        )
+      this.balanceFilter.valueChanges
+        .subscribe(
+          balance => {
+            this.filterValues.balance = balance;
+            this.dataSource.filter = JSON.stringify(this.filterValues);
+          }
+        )
+      this.debtFilter.valueChanges
+        .subscribe(
+          debt => {
+            this.filterValues.debt = debt;
+            this.dataSource.filter = JSON.stringify(this.filterValues);
+          }
+        )
+      this.nameFilter.valueChanges
+        .subscribe(
+          name => {
+            this.filterValues.name = name;
+            this.dataSource.filter = JSON.stringify(this.filterValues);
+          }
+        )
     });
   }
 
-  public doFilter = (value: string) => {
-    this.dataSource.filter = value.trim().toLocaleLowerCase();
+  constructor(private http: HttpClient, private router: Router) {
+    this.dataSource.filterPredicate = this.createFilter();
   }
 
-  constructor(private http: HttpClient, private router: Router) {}
+  createFilter(): (data: any, filter: string) => boolean {
+    let filterFunction = function(data, filter): boolean {
+      let searchTerms = JSON.parse(filter);
+      return data.id.toString().indexOf(searchTerms.id) !== -1
+        && data.balance.toString().toLowerCase().indexOf(searchTerms.balance) !== -1
+        && data.debt.toString().toLowerCase().indexOf(searchTerms.debt) !== -1
+        && data.name.toString().toLowerCase().indexOf(searchTerms.name) !== -1
+    }
+    return filterFunction;
+  }
+
+  idFilter = new FormControl('');
+  balanceFilter = new FormControl('');
+  debtFilter = new FormControl('');
+  nameFilter = new FormControl('');
 
   public edit(idx: number): void {
 

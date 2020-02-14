@@ -35,8 +35,6 @@ import { ChartsModule } from 'ng2-charts';
 import { HttpClientModule } from '@angular/common/http';
 
 
-import { MatTableModule } from "@angular/material/table";
-import {FormsModule} from "@angular/forms";
 import {MatFormFieldModule} from "@angular/material/form-field";
 import {AccountEditComponent} from "./views/account/edit.component";
 import {AccountAddComponent} from "./views/account/add.component";
@@ -56,13 +54,14 @@ import {RestrictionAddComponent} from "./views/restriction/add.component";
 import {RestrictionEditComponent} from "./views/restriction/edit.component";
 import {TypeEditComponent} from "./views/type/edit.component";
 import {TypeAddComponent} from "./views/type/add.component";
+import { MatInputModule } from '@angular/material/input';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
     AppRoutingModule,
-    MatTableModule,
     AppAsideModule,
     AppBreadcrumbModule.forRoot(),
     AppFooterModule,
@@ -73,8 +72,11 @@ import {TypeAddComponent} from "./views/type/add.component";
     BsDropdownModule.forRoot(),
     TabsModule.forRoot(),
     ChartsModule,
-    FormsModule,
-    MatFormFieldModule
+    MatFormFieldModule,
+    BrowserModule,
+    BrowserAnimationsModule,
+    MatInputModule,
+    FormsModule
   ],
   declarations: [
     AppComponent,

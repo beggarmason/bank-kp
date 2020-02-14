@@ -10,25 +10,49 @@
       <mat-cell *matCellDef="let i = index">{{i + 1}}</mat-cell>
     </ng-container>
     <ng-container matColumnDef="id">
-      <mat-header-cell *matHeaderCellDef>ID</mat-header-cell>
+      <mat-header-cell *matHeaderCellDef>
+        <mat-form-field style="display: block; width: 50px" floatLabel="always">
+          <mat-label>ID</mat-label>
+          <input matInput [formControl]="idFilter">
+        </mat-form-field>
+      </mat-header-cell>
       <mat-cell *matCellDef="let user">{{user.id}}</mat-cell>
     </ng-container>
     <ng-container matColumnDef="active">
       <mat-header-cell *matHeaderCellDef>АКТИВНОСТЬ</mat-header-cell>
       <mat-cell *matCellDef="let user">{{user.active}}</mat-cell>
     </ng-container>
+
     <ng-container matColumnDef="balance">
-      <mat-header-cell *matHeaderCellDef>ОСТАТОК</mat-header-cell>
+      <mat-header-cell *matHeaderCellDef>
+        <mat-form-field style="display: block; width: 50px" floatLabel="always">
+          <mat-label>БАЛАНС</mat-label>
+          <input matInput [formControl]="balanceFilter">
+        </mat-form-field>
+      </mat-header-cell>
       <mat-cell *matCellDef="let user">{{user.balance}}</mat-cell>
     </ng-container>
+
     <ng-container matColumnDef="debt">
-      <mat-header-cell *matHeaderCellDef>ДОЛГ</mat-header-cell>
+      <mat-header-cell *matHeaderCellDef>
+        <mat-form-field style="display: block; width: 50px" floatLabel="always">
+          <mat-label>ДОЛГ</mat-label>
+          <input matInput [formControl]="debtFilter">
+        </mat-form-field>
+      </mat-header-cell>
       <mat-cell *matCellDef="let user">{{user.debt}}</mat-cell>
     </ng-container>
+
     <ng-container matColumnDef="name">
-      <mat-header-cell *matHeaderCellDef>НАЗВАНИЕ</mat-header-cell>
+      <mat-header-cell *matHeaderCellDef>
+        <mat-form-field style="display: block; width: 50px" floatLabel="always">
+          <mat-label>НАЗВАНИЕ</mat-label>
+          <input matInput [formControl]="nameFilter">
+        </mat-form-field>
+      </mat-header-cell>
       <mat-cell *matCellDef="let user">{{user.name}}</mat-cell>
     </ng-container>
+
     <ng-container matColumnDef="accountid">
       <mat-header-cell *matHeaderCellDef>СЧЕТ</mat-header-cell>
       <mat-cell *matCellDef="let user">{{user.account?.id}}</mat-cell>

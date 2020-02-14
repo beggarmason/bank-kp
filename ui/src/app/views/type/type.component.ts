@@ -3,6 +3,7 @@ import {HttpClient} from "@angular/common/http";
 import {environment} from "../../../environments/environment";
 import {MatTableDataSource} from "@angular/material/table";
 import { Router } from '@angular/router';
+import {FormControl} from "@angular/forms";
 
 interface dataRecord {
   id: number;
@@ -28,20 +29,59 @@ export class TypeComponent implements OnInit {
   accounts: dataRecord[];
   public displayedColumns = ['#', 'id', 'created', 'name', 'year', 'edit', 'remove'];
 
+  filterValues = {
+    id: 0,
+    year: 0,
+    name: ''
+  };
+
   public dataSource = new MatTableDataSource<dataRecord>();
 
   ngOnInit(): void {
     this.http.get<any>(environment.apiUrl + '/bank/types').subscribe(result => {
       this.accounts = result;
       this.dataSource.data = this.accounts;
+      this.idFilter.valueChanges
+        .subscribe(
+          id => {
+            this.filterValues.id = id;
+            this.dataSource.filter = JSON.stringify(this.filterValues);
+          }
+        )
+      this.yearFilter.valueChanges
+        .subscribe(
+          year => {
+            this.filterValues.year = year;
+            this.dataSource.filter = JSON.stringify(this.filterValues);
+          }
+        )
+      this.nameFilter.valueChanges
+        .subscribe(
+          name => {
+            this.filterValues.name = name;
+            this.dataSource.filter = JSON.stringify(this.filterValues);
+          }
+        )
     });
   }
 
-  public doFilter = (value: string) => {
-    this.dataSource.filter = value.trim().toLocaleLowerCase();
+  constructor(private http: HttpClient, private router: Router) {
+    this.dataSource.filterPredicate = this.createFilter();
   }
 
-  constructor(private http: HttpClient, private router: Router) {}
+  createFilter(): (data: any, filter: string) => boolean {
+    let filterFunction = function(data, filter): boolean {
+      let searchTerms = JSON.parse(filter);
+      return data.id.toString().indexOf(searchTerms.id) !== -1
+        && data.year.toString().toLowerCase().indexOf(searchTerms.year) !== -1
+        && data.name.toString().toLowerCase().indexOf(searchTerms.name) !== -1
+    }
+    return filterFunction;
+  }
+
+  idFilter = new FormControl('');
+  yearFilter = new FormControl('');
+  nameFilter = new FormControl('');
 
   public edit(idx: number): void {
 

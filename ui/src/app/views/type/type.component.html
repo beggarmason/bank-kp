@@ -10,7 +10,12 @@
       <mat-cell *matCellDef="let i = index">{{i + 1}}</mat-cell>
     </ng-container>
     <ng-container matColumnDef="id">
-      <mat-header-cell *matHeaderCellDef>ID</mat-header-cell>
+      <mat-header-cell *matHeaderCellDef>
+        <mat-form-field style="display: block; width: 50px" floatLabel="always">
+          <mat-label>ID</mat-label>
+          <input matInput [formControl]="idFilter">
+        </mat-form-field>
+      </mat-header-cell>
       <mat-cell *matCellDef="let user">{{user.id}}</mat-cell>
     </ng-container>
     <ng-container matColumnDef="created">
@@ -18,11 +23,21 @@
       <mat-cell *matCellDef="let user">{{user.created | date}}</mat-cell>
     </ng-container>
     <ng-container matColumnDef="name">
-      <mat-header-cell *matHeaderCellDef>НАЗВАНИЕ</mat-header-cell>
+      <mat-header-cell *matHeaderCellDef>
+        <mat-form-field style="display: block; width: 50px" floatLabel="always">
+          <mat-label>НАЗВАНИЕ</mat-label>
+          <input matInput [formControl]="nameFilter">
+        </mat-form-field>
+      </mat-header-cell>
       <mat-cell *matCellDef="let user">{{user.name}}</mat-cell>
     </ng-container>
     <ng-container matColumnDef="year">
-      <mat-header-cell *matHeaderCellDef>ГОД</mat-header-cell>
+      <mat-header-cell *matHeaderCellDef>
+        <mat-form-field style="display: block; width: 50px" floatLabel="always">
+          <mat-label>ГОД</mat-label>
+          <input matInput [formControl]="yearFilter">
+        </mat-form-field>
+      </mat-header-cell>
       <mat-cell *matCellDef="let user">{{user.year}}</mat-cell>
     </ng-container>
 

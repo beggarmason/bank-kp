@@ -161,11 +161,11 @@ public class BankController {
 
     @ResponseBody
     @GetMapping("/bonuses")
-    public ResponseEntity<List<BankDto>> getBonuses() {
+    public ResponseEntity<List<BonusDto>> getBonuses() {
         List<Bonus> bonuses = bankService.getBonuses();
-        List<BankDto> resultList = new ArrayList<>();
+        List<BonusDto> resultList = new ArrayList<>();
         bonuses.forEach(a -> {
-            BankDto accountDto = new BankDto();
+            BonusDto accountDto = new BonusDto();
             mapper.map(a, accountDto);
             resultList.add(accountDto);
         });

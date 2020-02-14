@@ -2,7 +2,8 @@ import {ChangeDetectionStrategy, ChangeDetectorRef, Component, OnInit} from '@an
 import {HttpClient} from "@angular/common/http";
 import {environment} from "../../../environments/environment";
 import {MatTableDataSource} from "@angular/material/table";
-import { Router } from '@angular/router';
+import {Router} from '@angular/router';
+import {FormControl} from "@angular/forms";
 
 interface dataRecord {
   id: number;
@@ -30,20 +31,49 @@ export class AccountComponent implements OnInit {
   accounts: dataRecord[];
   public displayedColumns = ['#', 'id', 'created', 'active', 'number', 'person', 'edit', 'remove'];
 
+  filterValues = {
+    id: 0,
+    number: ''
+  };
+
   public dataSource = new MatTableDataSource<dataRecord>();
 
   ngOnInit(): void {
     this.http.get<any>(environment.apiUrl + '/bank/accounts').subscribe(result => {
       this.accounts = result;
       this.dataSource.data = this.accounts;
+      this.idFilter.valueChanges
+        .subscribe(
+          id => {
+            this.filterValues.id = id;
+            this.dataSource.filter = JSON.stringify(this.filterValues);
+          }
+        )
+      this.numberFilter.valueChanges
+        .subscribe(
+          number => {
+            this.filterValues.number = number;
+            this.dataSource.filter = JSON.stringify(this.filterValues);
+          }
+        )
     });
   }
 
-  public doFilter = (value: string) => {
-    this.dataSource.filter = value.trim().toLocaleLowerCase();
+  constructor(private http: HttpClient, private router: Router) {
+    this.dataSource.filterPredicate = this.createFilter();
   }
 
-  constructor(private http: HttpClient, private router: Router) {}
+  createFilter(): (data: any, filter: string) => boolean {
+    let filterFunction = function(data, filter): boolean {
+      let searchTerms = JSON.parse(filter);
+      return data.id.toString().indexOf(searchTerms.id) !== -1
+        && data.number.toString().toLowerCase().indexOf(searchTerms.number) !== -1
+    }
+    return filterFunction;
+  }
+
+  idFilter = new FormControl('');
+  numberFilter = new FormControl('');
 
   public edit(idx: number): void {
 
@@ -71,7 +101,7 @@ export class AccountComponent implements OnInit {
     let buttons = document.getElementsByTagName('button');
     for (var i = 0; i < buttons.length; i++) {
       var button = buttons[i];
-      button.setAttribute('display','none');
+      button.setAttribute('display', 'none');
     }
     window.print();
   }
